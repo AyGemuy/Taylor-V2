@@ -1,0 +1,31 @@
+info face="Bold Pressing H3 demo" size=-32 bold=0 italic=0 charset="" unicode=1 stretchH=100 smooth=0 aa=1 padding=0,0,0,0 spacing=0,0 outline=0
+common lineHeight=37 base=27 scaleW=256 scaleH=128 pages=1 packed=0 alphaChnl=0 redChnl=4 greenChnl=4 blueChnl=4
+page id=0 file="font32.png"
+chars count=27
+char id=32   x=0     y=0     width=0     height=0     xoffset=0     yoffset=0     xadvance=8     page=0  chnl=15
+char id=65   x=22    y=0     width=24    height=27    xoffset=-1    yoffset=4     xadvance=23    page=0  chnl=15
+char id=66   x=0     y=60    width=23    height=27    xoffset=-1    yoffset=3     xadvance=20    page=0  chnl=15
+char id=67   x=90    y=0     width=20    height=24    xoffset=-1    yoffset=3     xadvance=19    page=0  chnl=15
+char id=68   x=0     y=87    width=23    height=27    xoffset=-3    yoffset=1     xadvance=21    page=0  chnl=15
+char id=69   x=66    y=80    width=20    height=28    xoffset=0     yoffset=3     xadvance=19    page=0  chnl=15
+char id=70   x=105   y=102   width=19    height=26    xoffset=-1    yoffset=3     xadvance=19    page=0  chnl=15
+char id=71   x=124   y=102   width=19    height=26    xoffset=0     yoffset=3     xadvance=18    page=0  chnl=15
+char id=72   x=46    y=0     width=22    height=26    xoffset=-1    yoffset=4     xadvance=22    page=0  chnl=15
+char id=73   x=110   y=0     width=14    height=27    xoffset=-1    yoffset=3     xadvance=13    page=0  chnl=15
+char id=74   x=86    y=79    width=19    height=29    xoffset=0     yoffset=3     xadvance=19    page=0  chnl=15
+char id=75   x=26    y=27    width=22    height=27    xoffset=-1    yoffset=3     xadvance=20    page=0  chnl=15
+char id=76   x=89    y=51    width=20    height=27    xoffset=-1    yoffset=3     xadvance=19    page=0  chnl=15
+char id=77   x=68    y=0     width=22    height=25    xoffset=0     yoffset=3     xadvance=23    page=0  chnl=15
+char id=78   x=68    y=53    width=21    height=26    xoffset=-2    yoffset=4     xadvance=19    page=0  chnl=15
+char id=79   x=44    y=86    width=22    height=26    xoffset=0     yoffset=4     xadvance=21    page=0  chnl=15
+char id=80   x=46    y=54    width=22    height=26    xoffset=-2    yoffset=3     xadvance=20    page=0  chnl=15
+char id=81   x=0     y=0     width=22    height=33    xoffset=-1    yoffset=3     xadvance=20    page=0  chnl=15
+char id=82   x=105   y=78    width=21    height=24    xoffset=-1    yoffset=4     xadvance=20    page=0  chnl=15
+char id=83   x=126   y=73    width=17    height=25    xoffset=0     yoffset=3     xadvance=18    page=0  chnl=15
+char id=84   x=109   y=48    width=19    height=25    xoffset=0     yoffset=3     xadvance=19    page=0  chnl=15
+char id=85   x=90    y=24    width=20    height=24    xoffset=0     yoffset=3     xadvance=20    page=0  chnl=15
+char id=86   x=23    y=60    width=23    height=26    xoffset=0     yoffset=3     xadvance=22    page=0  chnl=15
+char id=87   x=0     y=33    width=26    height=27    xoffset=0     yoffset=3     xadvance=25    page=0  chnl=15
+char id=88   x=69    y=25    width=21    height=26    xoffset=0     yoffset=3     xadvance=21    page=0  chnl=15
+char id=89   x=23    y=86    width=21    height=28    xoffset=-1    yoffset=4     xadvance=21    page=0  chnl=15
+char id=90   x=48    y=26    width=21    height=27    xoffset=-1    yoffset=3     xadvance=18    page=0  chnl=15
