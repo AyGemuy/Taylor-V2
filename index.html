@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Responsive Dashboard with Sliders and Music Player</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css'>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css'>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&family=Roboto:wght@300;400;500;700&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+nav {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+}
+
+nav ul,
+nav ul li {
+  outline: 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+}
+
+h1 {
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-image: url(https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/aa462558-0106-4268-9864-d34a4f35531f);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* MAIN MENU */
+
+main {
+  display: grid;
+  grid-template-columns: 11% 89%;
+  width: 95%;
+  margin: 40px;
+  background: rgba(16, 21, 61, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+  box-shadow: 0 0.5px 0 1px rgba(255, 255, 255, 0.23) inset,
+    0 1px 0 0 rgba(255, 255, 255, 0.6) inset, 0 4px 16px rgba(0, 0, 0, 0.12);
+  z-index: 10;
+}
+
+.main-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 15px 0 0 15px;
+  border-right: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 12px 0 20px;
+  overflow: hidden;
+  font-family: inherit;
+}
+
+.user-info img {
+  padding: 12px 24px 6px;
+  border-radius: 50%;
+}
+
+.user-info p {
+  color: #fff;
+  font-size: clamp(0.8rem, 3vw, 1rem);
+  font-weight: 500;
+  text-align: center;
+  line-height: 1;
+  padding: 0 6px 32px;
+}
+
+.nav-item {
+  display: block;
+}
+
+.nav-item a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1rem;
+  padding: 12px 0;
+  margin: 0 8px;
+  border-radius: 5px;
+}
+
+.nav-item.active a {
+  background: rgba(106, 109, 155, 0.5);
+  text-decoration: none;
+}
+
+.nav-icon {
+  width: 40px;
+  height: 20px;
+  font-size: 1.1rem;
+}
+
+.nav-text {
+  display: block;
+  width: 70px;
+  height: 20px;
+  letter-spacing: 0;
+}
+
+/* CONTENT */
+
+.content {
+  display: grid;
+  grid-template-columns: 75% 25%;
+}
+
+/* LEFT CONTENT */
+
+.left-content {
+  padding: 30px 20px;
+  color: #e5e5e5;
+}
+
+/* SLIDER */
+
+.slider-container {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.swiper {
+  width: 100%;
+  padding: 16px 0 20px;
+  margin-bottom: 50px;
+}
+
+.swiper-slide {
+  position: relative;
+  width: 600px;
+}
+
+.swiper-slide img {
+  border-radius: 20px;
+  height: 300px;
+  object-fit: cover;
+  border: 2px solid rgba(159, 160, 168, 0.5);
+}
+
+.swiper-pagination {
+  --swiper-pagination-bottom: -4px;
+}
+
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: #ffffffe7;
+  transition: all 0.3s ease-in-out;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #fff;
+  width: 18px;
+  border-radius: 8px;
+}
+
+.slide-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  row-gap: 12px;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 98%;
+  background: linear-gradient(
+    240deg,
+    transparent,
+    transparent,
+    rgba(38, 21, 149, 0.8)
+  );
+  border-radius: 20px;
+  padding: 30px;
+}
+
+.slide-overlay h2 {
+  font-size: clamp(1.2rem, 3vw, 2.2rem);
+  font-weight: 700;
+}
+
+.slide-overlay button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+  width: max-content;
+  padding: 12px 16px;
+  background: #e9e6eb2a;
+  color: #e8e5e5;
+  border: 1px solid rgba(159, 160, 168, 0.4);
+  border-radius: 12px;
+  outline: 0;
+  font-size: clamp(0.7rem, 3vw, 1rem);
+  font-weight: 500;
+  text-transform: uppercase;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  transition: all 0.4s linear;
+  cursor: pointer;
+}
+
+.slide-overlay button:is(:hover, :focus-visible) {
+  background: #e9e6eb;
+  color: #000;
+}
+
+/* Containers of Artist and Albums */
+
+.containers {
+  display: flex;
+  align-items: center;
+  padding: 0 0 12px;
+  overflow-x: auto;
+  cursor: grab;
+}
+
+/* ARTISTS */
+
+.artists h1 {
+  margin-bottom: 24px;
+}
+
+.artist-container {
+  column-gap: 20px;
+}
+
+.artist {
+  display: grid;
+  grid-auto-flow: dense;
+  align-items: center;
+  grid-template-rows: 8fr 2fr;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+}
+
+.artist img {
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid rgba(169, 150, 253, 0.5);
+  width: 140px;
+  aspect-ratio: 1/1;
+  margin-bottom: 8px;
+  box-shadow: rgba(221, 221, 221, 0.3) 0px 6px 18px -3px,
+    rgba(221, 221, 221, 0.2) 0px -3px 0px inset;
+  transition: all 0.2s;
+}
+
+.artist img:hover {
+  border: 4px solid rgba(169, 150, 253, 0.6);
+}
+
+.artist p {
+  font-size: clamp(0.9rem, 3vw, 1rem);
+  font-weight: 500;
+  text-align: center;
+}
+
+/* ALBUMS */
+
+.albums h1 {
+  margin: 60px 0 14px;
+}
+
+.album-container {
+  column-gap: 24px;
+}
+
+.album {
+  display: grid;
+  grid-auto-flow: dense;
+  grid-template-rows: 5fr 2fr;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+}
+
+.album-frame {
+  position: relative;
+  width: 180px;
+  aspect-ratio: 1/1;
+  border: 2px solid rgba(169, 150, 253, 0.5);
+  border-radius: 10px;
+  box-shadow: rgba(221, 221, 221, 0.3) 0px 8px 18px -3px,
+    rgba(221, 221, 221, 0.2) 0px -3px 0px inset;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.album-frame img {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s;
+}
+
+.album-frame img:hover {
+  transform: rotate(3deg) scale(1.2);
+}
+
+.album h2 {
+  font-size: clamp(0.9rem, 4vw, 1.1rem);
+  font-weight: 500;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  @supports (-webkit-line-clamp: 2) {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+}
+
+.album p {
+  font-size: clamp(0.9rem, 4vw, 1rem);
+  opacity: 0.5;
+}
+
+/* Containers Scrollbar Style */
+
+.artist-container::-webkit-scrollbar,
+.album-container::-webkit-scrollbar {
+  height: 10px;
+}
+
+.artist-container::-webkit-scrollbar-track,
+.album-container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 0.3rem rgb(79, 78, 78);
+  border-radius: 40px;
+}
+
+.artist-container::-webkit-scrollbar-thumb,
+.album-container::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 0.5rem rgb(116, 116, 116);
+  background-color: rgba(25, 43, 206, 0.2);
+  outline: none;
+  border-radius: 40px;
+}
+
+/* RIGHT CONTENT */
+
+.right-content {
+  display: grid;
+  grid-template-rows: 60% 40%;
+  border-radius: 0 15px 15px 0;
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 30px 20px;
+  color: #e5e5e5;
+}
+
+/* SONGS */
+
+.recommended-songs h1 {
+  margin-bottom: 24px;
+}
+
+.song-container {
+  align-items: center;
+}
+
+.song {
+  display: grid;
+  grid-template-columns: 26% auto 10%;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.song-img {
+  position: relative;
+  width: 60px;
+  border-radius: 6px;
+}
+
+.song-img img {
+  aspect-ratio: 4/3;
+  border-radius: inherit;
+  object-fit: cover;
+  border: 2px solid rgba(159, 160, 168, 0.5);
+  box-shadow: rgba(221, 221, 221, 0.3) 0px 6px 18px -3px,
+    rgba(221, 221, 221, 0.2) 0px -3px 0px inset;
+}
+
+.song-img .overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 92%;
+  background-color: rgba(169, 150, 253, 0.6);
+  border-radius: inherit;
+  font-size: 1.75rem;
+  opacity: 0;
+  transition: all 0.4s linear;
+  cursor: pointer;
+}
+
+.song-img:hover .overlay {
+  opacity: 1;
+}
+
+.song h2 {
+  font-size: 1rem;
+}
+
+.song p,
+.song span {
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
+.song p {
+  opacity: 0.8;
+}
+
+/* MUSIC PLAYER */
+
+.music-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: rgba(188, 184, 198, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: inset 2px -2px 6px rgba(214, 214, 214, 0.2),
+    inset -3px 3px 3px rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: 30px 20px;
+  margin-top: 20px;
+}
+
+.album-cover {
+  position: relative;
+}
+
+.album-cover img {
+  border-radius: 50%;
+  border: 2px solid rgba(222, 215, 255, 0.9);
+  max-width: 120px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  box-shadow: 0 10px 60px rgba(200, 187, 255, 01.75rem);
+  transition: transform 0.5s ease-out;
+  pointer-events: none;
+  user-select: none;
+}
+
+.point {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 16px;
+  background-color: rgba(17, 6, 58, 0.7);
+  border: 2px solid rgba(222, 215, 255, 0.9);
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.music-player h2 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 16px 0 2px;
+}
+
+.music-player p {
+  font-size: 1rem;
+  font-weight: 300;
+  margin-bottom: 26px;
+  opacity: 0.8;
+}
+
+/* Music Player Controls */
+
+#progress {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  background: rgba(200, 187, 255, 0.6);
+  border-radius: 4px;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+#progress::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  background: rgb(77, 58, 162);
+  width: 20px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: 4px solid rgb(234, 229, 255);
+  box-shadow: 0 6px 10px rgba(200, 187, 255, 0.4);
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.controls button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  aspect-ratio: 1/1;
+  margin: 20px;
+  background: rgba(200, 187, 255, 0.6);
+  border-radius: 50%;
+  border: 0;
+  outline: 0;
+  color: #fff;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 8px rgba(200, 187, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+
+.controls button:is(:hover, :focus-visible) {
+  transform: scale(0.96);
+}
+
+.controls button:nth-child(2) {
+  transform: scale(1.3);
+}
+
+.controls button:nth-child(2):is(:hover, :focus-visible) {
+  transform: scale(1.25);
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 1500px) {
+  main {
+    grid-template-columns: 6% 94%;
+  }
+
+  .user-info img {
+    border-radius: 50%;
+    padding: 12px 12px 6px;
+  }
+
+  .nav-icon {
+    text-align: center;
+    transform: translateY(2px);
+  }
+
+  .nav-text {
+    display: none;
+  }
+
+  .content {
+    grid-template-columns: 70% 30%;
+  }
+}
+
+@media (max-width: 1310px) {
+  main {
+    grid-template-columns: 8% 92%;
+    margin: 30px;
+  }
+}
+
+@media (max-width: 1250px) {
+  .swiper-slide {
+    width: 500px;
+  }
+
+  .swiper-slide img {
+    border-radius: 16px;
+    height: 280px;
+  }
+
+  .artist {
+    grid-template-rows: 7fr 2fr;
+  }
+
+  .artist img {
+    width: 120px;
+  }
+
+  .album-frame {
+    width: 160px;
+  }
+  
+  .song {
+    grid-template-columns: 29% auto 10%;
+  }
+
+  .controls button {
+    margin: 15px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .content {
+    grid-template-columns: 60% 40%;
+  }
+
+  .left-content {
+    padding: 40px 20px 20px;
+  }
+
+  .swiper-slide {
+    width: 410px;
+  }
+
+  .swiper-slide img {
+    height: 220px;
+  }
+
+  .artist {
+    grid-template-rows: 5fr 2fr;
+  }
+
+  .artist img {
+    width: 90px;
+  }
+
+  .album {
+    grid-template-rows: 4fr 2fr;
+  }
+
+  .album-frame {
+    width: 130px;
+  }
+  
+   .song {
+    grid-template-columns: 26% auto 10%;
+  }
+
+  .song:nth-child(8),
+  .song:nth-child(9) {
+    display: none;
+  }
+}
+
+@media (max-width: 910px) {
+  main {
+    grid-template-columns: 10% 90%;
+    margin: 20px;
+  }
+
+  .left-content {
+    padding: 30px 20px 20px;
+  }
+
+  .swiper-slide {
+    width: 350px;
+  }
+
+  .swiper-slide img {
+    height: 180px;
+  }
+
+  .artist {
+    grid-template-rows: 4fr 2fr;
+  }
+
+  .artist img {
+    width: 80px;
+  }
+
+  .album {
+    grid-template-rows: 3fr 2fr;
+  }
+
+  .album-frame {
+    width: 100px;
+  }
+
+  .right-content {
+    grid-template-rows: 55% 45%;
+  }
+   
+  .song {
+    grid-template-columns: 30% auto 12%;
+  }
+  
+  .song:nth-child(7) {
+    display: none;
+  }
+}
+
+@media (max-width: 825px) {
+  .content {
+    grid-template-columns: 52% 48%;
+  }
+
+  .swiper-slide {
+    width: 320px;
+  }
+
+  .swiper-slide img {
+    height: 200px;
+  }
+
+  .slide-overlay {
+    row-gap: 8px;
+    padding: 12px 36px;
+  }
+
+  .slide-overlay button {
+    padding: 8px 12px;
+  }
+
+  .song {
+    grid-template-columns: 28% auto 10%;
+  }
+}
+
+@media (max-width: 700px) {
+  main {
+    grid-template-columns: 15% 85%;
+  }
+
+  .content {
+    grid-template-columns: 100%;
+    grid-template-areas:
+      "leftContent"
+      "rightContent";
+  }
+
+  .left-content {
+    grid-area: leftContent;
+  }
+
+  .slide-overlay {
+    row-gap: 12px;
+    padding: 20px 30px;
+  }
+
+  .swiper-slide {
+    width: 420px;
+  }
+
+  .artist img {
+    width: 110px;
+  }
+
+  .album {
+    grid-template-rows: 3fr 2fr;
+  }
+
+  .album-frame {
+    width: 140px;
+  }
+
+  .right-content {
+    grid-area: rightContent;
+    border-left: unset;
+    grid-template-rows: 60% 40%;
+    row-gap: 16px;
+  }
+  
+   .song {
+    grid-template-columns: 18% auto 8%;
+  }
+
+  .song:nth-child(7),
+  .song:nth-child(8),
+  .song:nth-child(9) {
+    display: grid;
+  }
+
+  .controls button {
+    margin: 20px;
+  }
+}
+
+@media (max-width: 580px) {
+  .swiper-slide {
+    width: 340px;
+  }
+
+  .swiper-slide img {
+    height: 180px;
+  }
+
+  .artist img {
+    width: 80px;
+  }
+
+  .album {
+    grid-template-rows: 3fr 2fr;
+  }
+
+  .album-frame {
+    width: 100px;
+  }
+  
+   .song {
+    grid-template-columns: 23% auto 8%;
+  }
+}
+
+@media (max-width: 450px) {
+  .user-info img {
+    border-radius: 50%;
+    padding: 6px 6px 2px;
+  }
+
+  .swiper-slide {
+    width: 320px;
+  }
+
+  .slide-overlay {
+    row-gap: 8px;
+    padding: 12px 36px;
+  }
+  
+   .song {
+    grid-template-columns: 25% auto 8%;
+  }
+}
+</style>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<body>
+    <main>
+      <nav class="main-menu">
+        <div>
+          <div class="user-info">
+            <img
+              src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/37e5ccfa-f9ee-458b-afa2-dcd85b495e4e"
+              alt="user" />
+            <p>Jane Wilson</p>
+          </div>
+          <ul>
+            <li class="nav-item active">
+              <a href="#">
+                <i class="fa fa-map nav-icon"></i>
+                <span class="nav-text">Discover</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="#">
+                <i class="fa fa-arrow-trend-up nav-icon"></i>
+                <span class="nav-text">Trending</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="#">
+                <i class="fa fa-compact-disc nav-icon"></i>
+                <span class="nav-text">Album</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="#">
+                <i class="fa fa-circle-play nav-icon"></i>
+                <span class="nav-text">Playlist</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="#">
+                <i class="fa fa-heart nav-icon"></i>
+                <span class="nav-text">Favorites</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <ul>
+          <li class="nav-item">
+            <a href="#">
+              <i class="fa fa-user nav-icon"></i>
+              <span class="nav-text">Profile</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#">
+              <i class="fa fa-gear nav-icon"></i>
+              <span class="nav-text">Settings</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#">
+              <i class="fa fa-right-from-bracket nav-icon"></i>
+              <span class="nav-text">Logout</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <section class="content">
+        <div class="left-content">
+          <div class="slider-container">
+            <h1>Popular Playlist</h1>
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img
+                    src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/95b52c32-f5da-4fe6-956d-a5ed118bbdd2" />
+                  <div class="slide-overlay">
+                    <h2>Midnight Moods</h2>
+                    <button>
+                      Listen Now <i class="fa-solid fa-circle-play"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <img
+                    src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/6ddf81f5-2689-4f34-bf80-a1e07f14621c" />
+                  <div class="slide-overlay">
+                    <h2>Party Starters</h2>
+                    <button>
+                      Listen Now <i class="fa-solid fa-circle-play"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <img
+                    src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/ab52d9d0-308e-43e0-a577-dce35fedd2a3" />
+                  <div class="slide-overlay">
+                    <h2>Relaxing Tones</h2>
+                    <button>
+                      Listen Now <i class="fa-solid fa-circle-play"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <img
+                    src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/20c8fdd5-9f4a-4917-ae90-0239a52e8334" />
+                  <div class="slide-overlay">
+                    <h2>Smooth Jazz Journey</h2>
+                    <button>
+                      Listen Now <i class="fa-solid fa-circle-play"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <img
+                    src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/df461a99-2fb3-4d55-ac16-2e0c6dd783e1" />
+                  <div class="slide-overlay">
+                    <h2>Uplifting Rhythms</h2>
+                    <button>
+                      Listen Now <i class="fa-solid fa-circle-play"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <div class="artists">
+            <h1>Featured Artists</h1>
+            <div class="artist-container containers">
+              <div class="artist">
+                <img
+                  src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/c8feaa0f-6ae7-4c69-bb7d-4a11de76b4f5"
+                  alt="" />
+                <p>Taylor Swift</p>
+              </div>
+
+              <div class="artist">
+                <img
+                  src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/bf80314e-5a02-4702-bb64-eae8c113c417"
+                  alt="" />
+                <p>The Weeknd</p>
+              </div>
+
+              <div class="artist">
+                <img
+                  src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/e4576af8-0e84-4343-8f90-7a01acb9c8b7"
+                  alt="" />
+                <p>Dua Lipa</p>
+              </div>
+
+              <div class="artist">
+                <img
+                  src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/d8eb2888-1e74-4117-82d7-833ad29e3cc1"
+                  alt="" />
+                <p>Jimin</p>
+              </div>
+
+              <div class="artist">
+                <img
+                  src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/f23adc16-11d7-41dc-af6a-191e03a81603"
+                  alt="" />
+                <p>Alicia Keys</p>
+              </div>
+
+              <div class="artist">
+                <img
+                  src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/f511c102-3217-4bea-bede-8be23b969bd8"
+                  alt="" />
+                <p>Maroon 5</p>
+              </div>
+
+              <div class="artist">
+                <img
+                  src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/9a8bd237-b525-43e6-a37c-daaac39db8ce"
+                  alt="" />
+                <p>Imagine Dragons</p>
+              </div>
+
+              <div class="artist">
+                <img
+                  src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/99452c85-26f4-4ccd-b439-7d1bd3875634"
+                  alt="" />
+                <p>Billie Eilish</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="albums">
+            <h1>Recommended Albums</h1>
+            <div class="album-container containers">
+              <div class="album">
+                <div class="album-frame">
+                  <img
+                    src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/74c4f0f9-d73e-4737-83fa-ea4afe392229"
+                    alt="" />
+                </div>
+                <div>
+                  <h2>Views</h2>
+                  <p>Drake</p>
+                </div>
+              </div>
+
+              <div class="album">
+                <div class="album-frame">
+                  <img
+                    src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/d3a0bac0-fdb4-467e-bdf5-f3f415928f24"
+                    alt="" />
+                </div>
+                <div>
+                  <h2>Speak Now</h2>
+                  <p>Taylor Swift</p>
+                </div>
+              </div>
+
+              <div class="album">
+                <div class="album-frame">
+                  <img
+                    src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/85521a12-cc46-4b9f-a742-21ba407ebd5e"
+                    alt="" />
+                </div>
+                <div>
+                  <h2>Born to Die</h2>
+                  <p>Lana Del Rey</p>
+                </div>
+              </div>
+
+              <div class="album">
+                <div class="album-frame">
+                  <img
+                    src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/4e7bf466-7fa5-4dad-b628-5bca12833b64"
+                    alt="" />
+                </div>
+                <div>
+                  <h2>Endless Summer Vacation</h2>
+                  <p>Miley Cyrus</p>
+                </div>
+              </div>
+
+              <div class="album">
+                <div class="album-frame">
+                  <img
+                    src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/f01f546a-7ab7-4e90-acb9-1c1e817b676d"
+                    alt="" />
+                </div>
+                <div>
+                  <h2>The Dark Side of The Moon</h2>
+                  <p>Pink Floyd</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-content">
+          <div class="recommended-songs">
+            <h1>Recommended Songs</h1>
+            <div class="song-container">
+              <div class="song">
+                <div class="song-img">
+                  <img
+                    src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/ea61baa7-9c4b-4f43-805e-81de5fc8aa2b"
+                    alt="" />
+                  <div class="overlay">
+                    <i class="fa-solid fa-play"></i>
+                  </div>
+                </div>
+                <div class="song-title">
+                  <h2>Blank Space</h2>
+                  <p>Taylor Swift</p>
+                </div>
+                <span>4:33</span>
+              </div>
+
+              <div class="song">
+                <div class="song-img">
+                  <img
+                    src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/6f72f702-c049-46fe-af76-a3b188b9a909"
+                    alt="" />
+                  <div class="overlay">
+                    <i class="fa-solid fa-play"></i>
+                  </div>
+                </div>
+                <div class="song-title">
+                  <h2>One Dance</h2>
+                  <p>Drake</p>
+                </div>
+                <span>4:03</span>
+              </div>
+
+              <div class="song">
+                <div class="song-img">
+                  <img
+                    src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/ad2e664a-3ab9-4f30-933a-623e26999030"
+                    alt="" />
+                  <div class="overlay">
+                    <i class="fa-solid fa-play"></i>
+                  </div>
+                </div>
+                <div class="song-title">
+                  <h2>Pawn It All</h2>
+                  <p>Alicia Keys</p>
+                </div>
+                <span>3:10</span>
+              </div>
+
+              <div class="song">
+                <div class="song-img">
+                  <img
+                    src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/666e065b-eb53-4320-a580-30e266370955"
+                    alt="" />
+                  <div class="overlay">
+                    <i class="fa-solid fa-play"></i>
+                  </div>
+                </div>
+                <div class="song-title">
+                  <h2>Lose Control</h2>
+                  <p>Teddy Swims</p>
+                </div>
+                <span>3:30</span>
+              </div>
+
+              <div class="song">
+                <div class="song-img">
+                  <img
+                    src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/619ed17f-5df2-4d32-a419-78f120a1aa5c"
+                    alt="" />
+                  <div class="overlay">
+                    <i class="fa-solid fa-play"></i>
+                  </div>
+                </div>
+                <div class="song-title">
+                  <h2>Be The One</h2>
+                  <p>Dua Lipa</p>
+                </div>
+                <span>3:24</span>
+              </div>
+
+              <div class="song">
+                <div class="song-img">
+                  <img
+                    src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/0ed3f51d-b769-4256-a4dd-8f35b12a1690"
+                    alt="" />
+                  <div class="overlay">
+                    <i class="fa-solid fa-play"></i>
+                  </div>
+                </div>
+                <div class="song-title">
+                  <h2>Delicate</h2>
+                  <p>Taylor Swift</p>
+                </div>
+                <span>3:54</span>
+              </div>
+
+              <div class="song">
+                <div class="song-img">
+                  <img
+                    src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/33779e1a-55f9-402a-b004-002395d0fbf1"
+                    alt="" />
+                  <div class="overlay">
+                    <i class="fa-solid fa-play"></i>
+                  </div>
+                </div>
+                <div class="song-title">
+                  <h2>Last Christmas</h2>
+                  <p>Wham!</p>
+                </div>
+                <span>4:39</span>
+              </div>
+
+              <div class="song">
+                <div class="song-img">
+                  <img
+                    src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/96bc0648-51f9-46ab-a426-766c6bc93d80"
+                    alt="" />
+                  <div class="overlay">
+                    <i class="fa-solid fa-play"></i>
+                  </div>
+                </div>
+                <div class="song-title">
+                  <h2>Paradise</h2>
+                  <p>Coldplay</p>
+                </div>
+                <span>4:20</span>
+              </div>
+
+              <div class="song">
+                <div class="song-img">
+                  <img
+                    src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/885b67a7-1816-4235-9dd3-5d879a202728"
+                    alt="" />
+                  <div class="overlay">
+                    <i class="fa-solid fa-play"></i>
+                  </div>
+                </div>
+                <div class="song-title">
+                  <h2>Easy On Me</h2>
+                  <p>Adele</p>
+                </div>
+                <span>3:45</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="music-player">
+            <div class="album-cover">
+              <img src="images/album-cover.png" id="rotatingImage" alt="" />
+              <span class="point"></span>
+            </div>
+
+            <h2>Redemption</h2>
+            <p>Besomorph & Coopex</p>
+
+            <audio id="song">
+              <source src="Besomorph-Coopex-Redemption.mp3" type="audio/mpeg" />
+            </audio>
+
+            <input type="range" value="0" id="progress" />
+
+            <div class="controls">
+              <button class="backward">
+                <i class="fa-solid fa-backward"></i>
+              </button>
+              <button class="play-pause-btn">
+                <i class="fa-solid fa-play" id="controlIcon"></i>
+              </button>
+              <button class="forward">
+                <i class="fa-solid fa-forward"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+<!-- partial -->
+  <script src='https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js'></script><script>
+  const navItems = document.querySelectorAll(".nav-item");
+
+navItems.forEach((navItem, i) => {
+  navItem.addEventListener("click", () => {
+    navItems.forEach((item, j) => {
+      item.className = "nav-item";
+    });
+    navItem.className = "nav-item active";
+  });
+});
+
+const containers = document.querySelectorAll(".containers");
+
+containers.forEach((container) => {
+  let isDragging = false;
+  let startX;
+  let scrollLeft;
+
+  container.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    startX = e.pageX - container.offsetLeft;
+    scrollLeft = container.scrollLeft;
+  });
+
+  container.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+
+    const x = e.pageX - container.offsetLeft;
+    const step = (x - startX) * 0.6;
+    container.scrollLeft = scrollLeft - step;
+  });
+
+  container.addEventListener("mouseup", () => {
+    isDragging = false;
+  });
+
+  container.addEventListener("mouseleave", () => {
+    isDragging = false;
+  });
+});
+
+const progress = document.getElementById("progress");
+const song = document.getElementById("song");
+const controlIcon = document.getElementById("controlIcon");
+const playPauseButton = document.querySelector(".play-pause-btn");
+const forwardButton = document.querySelector(".controls button.forward");
+const backwardButton = document.querySelector(".controls button.backward");
+const rotatingImage = document.getElementById("rotatingImage");
+const songName = document.querySelector(".music-player h2");
+const artistName = document.querySelector(".music-player p");
+
+let rotating = false;
+let currentRotation = 0;
+let rotationInterval;
+
+const songs = [
+  {
+    title: "Redemption",
+    name: "Besomorph & Coopex",
+    source:
+      "https://github.com/ecemgo/mini-samples-great-tricks/raw/main/song-list/Besomorph-Coopex-Redemption.mp3",
+    cover:
+      "https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/398875d0-9b9e-494a-8906-210aa3f777e0",
+  },
+  {
+    title: "What's The Problem?",
+    name: "OSKI",
+    source:
+      "https://github.com/ecemgo/mini-samples-great-tricks/raw/main/song-list/OSKI-Whats-The-Problem.mp3",
+    cover:
+      "https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/810d1ddc-1168-4990-8d43-a0ffee21fb8c",
+  },
+  {
+    title: "Control",
+    name: "Unknown Brain x Rival",
+    source:
+      "https://github.com/ecemgo/mini-samples-great-tricks/raw/main/song-list/Unknown-BrainxRival-Control.mp3",
+    cover:
+      "https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/7bd23b84-d9b0-4604-a7e3-872157a37b61",
+  },
+];
+
+let currentSongIndex = 0;
+
+function startRotation() {
+  if (!rotating) {
+    rotating = true;
+    rotationInterval = setInterval(rotateImage, 50);
+  }
+}
+
+function pauseRotation() {
+  clearInterval(rotationInterval);
+  rotating = false;
+}
+
+function rotateImage() {
+  currentRotation += 1;
+  rotatingImage.style.transform = `rotate(${currentRotation}deg)`;
+}
+
+function updateSongInfo() {
+  songName.textContent = songs[currentSongIndex].title;
+  artistName.textContent = songs[currentSongIndex].name;
+  song.src = songs[currentSongIndex].source;
+  rotatingImage.src = songs[currentSongIndex].cover;
+
+  song.addEventListener("loadeddata", function () {});
+}
+
+song.addEventListener("loadedmetadata", function () {
+  progress.max = song.duration;
+  progress.value = song.currentTime;
+});
+
+song.addEventListener("ended", function () {
+  currentSongIndex = (currentSongIndex + 1) % songs.length;
+  updateSongInfo();
+  playPause();
+});
+
+song.addEventListener("timeupdate", function () {
+  if (!song.paused) {
+    progress.value = song.currentTime;
+  }
+});
+
+function playPause() {
+  if (song.paused) {
+    song.play();
+    controlIcon.classList.add("fa-pause");
+    controlIcon.classList.remove("fa-play");
+    startRotation();
+  } else {
+    song.pause();
+    controlIcon.classList.remove("fa-pause");
+    controlIcon.classList.add("fa-play");
+    pauseRotation();
+  }
+}
+
+playPauseButton.addEventListener("click", playPause);
+
+progress.addEventListener("input", function () {
+  song.currentTime = progress.value;
+});
+
+progress.addEventListener("change", function () {
+  song.play();
+  controlIcon.classList.add("fa-pause");
+  controlIcon.classList.remove("fa-play");
+  startRotation();
+});
+
+forwardButton.addEventListener("click", function () {
+  currentSongIndex = (currentSongIndex + 1) % songs.length;
+  updateSongInfo();
+  playPause();
+});
+
+backwardButton.addEventListener("click", function () {
+  currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+  updateSongInfo();
+  playPause();
+});
+
+updateSongInfo();
+
+var swiper = new Swiper(".swiper", {
+  effect: "coverflow",
+  grabCursor: true,
+  centeredSlides: true,
+  loop: true,
+  speed: 600,
+  slidesPerView: "auto",
+  coverflowEffect: {
+    rotate: 10,
+    stretch: 120,
+    depth: 200,
+    modifier: 1,
+    slideShadows: false,
+  },
+   on: {
+    click(event) {
+      swiper.slideTo(this.clickedIndex);
+    },
+  },
+  pagination: {
+    el: ".swiper-pagination",
+  },
+});
+  </script>
+
+</body>
+</html>

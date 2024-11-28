@@ -1,0 +1,11 @@
+{
+  "task": [
+    {
+      "id": 1,
+      "detail": "BOT Task Management",
+      "due": "06-02-2024",
+      "staff": "Wudysoft",
+      "status": "Completed"
+    }
+  ]
+}
